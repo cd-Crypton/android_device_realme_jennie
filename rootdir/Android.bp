@@ -1,13 +1,62 @@
 //
-// Copyright (C) 2023 The LineageOS Project
-//
+// Copyright (C) 2022 The LineageOS Project
 // SPDX-License-Identifier: Apache-2.0
 //
 
-// Init scripts
-sh_binary {
-    name: "init.at.class_main.sh",
-    src: "bin/init.at.class_main.sh",
+prebuilt_etc {
+    name: "fstab.default",
+    src: "etc/fstab.default",
+    vendor: true,
+    vendor_ramdisk_available: true,
+}
+
+prebuilt_etc {
+    name: "init.oplus.hw.rc",
+    src: "etc/init.oplus.hw.rc",
+    sub_dir: "init",
+    device_specific: true,
+    recovery_available: true,
+}
+
+prebuilt_etc {
+    name: "init.oplus.rc",
+    src: "etc/init.oplus.rc",
+    sub_dir: "init",
+    device_specific: true,
+}
+
+prebuilt_etc {
+    name: "init.qcom.rc",
+    src: "etc/init.qcom.rc",
+    sub_dir: "init/hw",
+    vendor: true,
+}
+
+prebuilt_etc {
+    name: "init.qcom.recovery.rc",
+    src: "etc/init.qcom.recovery.rc",
+    sub_dir: "init",
+    recovery: true,
+}
+
+prebuilt_etc {
+    name: "init.target.rc",
+    src: "etc/init.target.rc",
+    sub_dir: "init/hw",
+    vendor: true,
+}
+
+prebuilt_etc {
+    name: "ueventd.oplus.rc",
+    filename: "ueventd.rc",
+    src: "etc/ueventd.oplus.rc",
+    device_specific: true,
+}
+
+prebuilt_etc {
+    name: "ueventd.qcom.rc",
+    filename: "ueventd.rc",
+    src: "etc/ueventd.qcom.rc",
     vendor: true,
 }
 
@@ -15,6 +64,12 @@ sh_binary {
     name: "init.class_main.sh",
     src: "bin/init.class_main.sh",
     vendor: true,
+}
+
+sh_binary {
+    name: "init.oplus.sh",
+    src: "bin/init.oplus.sh",
+    device_specific: true,
 }
 
 sh_binary {
@@ -26,54 +81,5 @@ sh_binary {
 sh_binary {
     name: "init.qcom.sh",
     src: "bin/init.qcom.sh",
-    vendor: true,
-}
-
-sh_binary {
-    name: "init.qcom.usb.sh",
-    src: "bin/init.qcom.usb.sh",
-    vendor: true,
-}
-
-// Init configuration files
-prebuilt_etc {
-    name: "init.at.qcom.rc",
-    src: "etc/init.at.qcom.rc",
-    sub_dir: "init/hw",
-    vendor: true,
-}
-
-prebuilt_etc {
-    name: "init.at.target.rc",
-    src: "etc/init.at.target.rc",
-    sub_dir: "init/hw",
-    vendor: true,
-}
-
-prebuilt_etc {
-    name: "init.qcom.rc",
-    src: "etc/init.qcom.rc",
-    sub_dir: "init/hw",
-    vendor: true,
-}
-
-prebuilt_etc {
-    name: "init.qcom.usb.rc",
-    src: "etc/init.qcom.usb.rc",
-    sub_dir: "init/hw",
-    vendor: true,
-}
-
-prebuilt_etc {
-    name: "init.target.rc",
-    src: "etc/init.target.rc",
-    sub_dir: "init/hw",
-    vendor: true,
-}
-
-// fstab
-prebuilt_etc {
-    name: "fstab.at.qcom",
-    src: "etc/fstab.at.qcom",
     vendor: true,
 }

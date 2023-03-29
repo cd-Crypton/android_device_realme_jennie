@@ -30,14 +30,7 @@
 # Firmware directory Path
 # Below macro will be read by uevent and path will
 # be added to search path for firmware loading
-
-# ifndef OPLUS_FEATURE_WIFI_BDF
-# WuGuotian@CONNECTIVITY.WIFI.HARDWARE.BDF.1065227 , 2021/05/26,
-# Modify for: multi projects using different bdf, adding persist into firmware_directories
-# firmware_directories /vendor/firmware_mnt/image/
-# else /* OPLUS_FEATURE_WIFI_BDF */
-firmware_directories /mnt/vendor/persist/copy/ /odm/etc/wifi/ /mnt/vendor/persist/ /vendor/firmware_mnt/image/
-# endif /* OPLUS_FEATURE_WIFI_BDF */
+firmware_directories /vendor/firmware_mnt/image/
 
 subsystem dma_heap
     devname uevent_devpath
@@ -91,7 +84,6 @@ subsystem mem_buf_vm
 /dev/smd2                 0660   bluetooth  bluetooth
 /dev/smd3                 0660   bluetooth  bluetooth
 /dev/btpower              0660   bluetooth  system
-/dev/btfmslim             0660   bluetooth  system
 
 #permissions for pta
 /dev/pta                  0660   system     system
@@ -384,9 +376,6 @@ subsystem mem_buf_vm
 
 # Kmsg device
 /dev/kmsg                                               0620   root       system
-
-# Huaiwei.Ding@BSP.Kernel.Stability, 2021/07/01, add for explorer project
-/dev/explorer_preisp                                    0660   cameraserver   camera
 
 # LED class devices
 /sys/class/leds/red      delay_on     0640    system    system
