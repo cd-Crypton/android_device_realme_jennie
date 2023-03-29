@@ -111,7 +111,6 @@ BOARD_VENDOR_KERNEL_MODULES_BLOCKLIST_FILE := $(KERNEL_MODULE_DIR)/vendor_dlkm/c
 BOARD_VENDOR_KERNEL_MODULES_LOAD := $(strip $(shell cat $(KERNEL_MODULE_DIR)/vendor_dlkm/config/vendor_dlkm.modules.load))
 BOARD_VENDOR_KERNEL_MODULES := $(KERNEL_MODULES)
 
-
 # Kernel - prebuilt
 TARGET_FORCE_PREBUILT_KERNEL := true
 ifeq ($(TARGET_FORCE_PREBUILT_KERNEL),true)
@@ -177,6 +176,11 @@ BOOT_SECURITY_PATCH := $(VENDOR_SECURITY_PATCH)
 # SEPolicy
 include device/qcom/sepolicy_vndr/SEPolicy.mk
 include hardware/oplus/sepolicy/qti/SEPolicy.mk
+
+# Touch
+SOONG_CONFIG_NAMESPACES += OPLUS_LINEAGE_TOUCH_HAL
+SOONG_CONFIG_OPLUS_LINEAGE_TOUCH_HAL := INCLUDE_DIR
+SOONG_CONFIG_OPLUS_LINEAGE_TOUCH_HAL_INCLUDE_DIR := $(DEVICE_PATH)/touch/include
 
 # Verified Boot
 BOARD_AVB_ENABLE := true
