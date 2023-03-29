@@ -25,4 +25,3 @@ bluetooth.profile.pbap.server.enabled=true
 bluetooth.profile.sap.server.enabled=false
 media.stagefright.audio.deep=false
 ro.af.client_heap_size_kbyte=7168
-ro.product.ab_ota_partitions=product,system,system_ext,vbmeta_system
