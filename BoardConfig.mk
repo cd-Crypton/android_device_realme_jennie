@@ -84,9 +84,6 @@ DEVICE_MATRIX_FILE := $(DEVICE_PATH)/device/compatibility_matrix.xml
 DEVICE_MANIFEST_FILE := $(DEVICE_PATH)/device/manifest.xml
 ODM_MANIFEST_FILES := $(DEVICE_PATH)/device/manifest_odm.xml
 
-# Init
-TARGET_INIT_VENDOR_LIB := //$(DEVICE_PATH):libinit_oplus
-
 # Kernel
 BOARD_BOOTIMG_HEADER_VERSION := 4
 BOARD_KERNEL_CMDLINE := video=vfb:640x400,bpp=32,memsize=3072000 msm_geni_serial.con_enabled=0 bootconfig
