@@ -203,24 +203,25 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     ipacm \
     IPACM_cfg.xml
-
+    
 # Init
 PRODUCT_PACKAGES += \
-    fstab.default \
-    fstab.default.vendor_ramdisk \
+    init.at.class_main.sh \
+    init.at.post_boot.sh \
     init.class_main.sh \
-    init.oplus.hw.rc \
-    init.oplus.hw.rc.recovery \
-    init.oplus.rc \
-    init.oplus.sh \
     init.qcom.early_boot.sh \
-    init.qcom.rc \
-    init.qcom.recovery.rc \
+    init.qcom.post_boot.sh \
     init.qcom.sh \
+    init.qcom.usb.sh
+
+PRODUCT_PACKAGES += \
+    fstab.at.qcom \
+    init.at.qcom.rc \
+    init.at.target.rc \
+    init.qcom.rc \
     init.qcom.usb.rc \
-    init.qcom.usb.sh \
     init.target.rc \
-    ueventd.oplus.rc \
+    init.recovery.qcom.rc \
     ueventd.qcom.rc
 
 # Keymaster
