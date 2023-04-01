@@ -84,20 +84,6 @@ prebuilt_etc {
     vendor: true,
 }
 
-prebuilt_etc {
-    name: "init.qcom.recovery.rc",
-    src: "etc/init.reccovery.qcom.rc",
-    sub_dir: "init",
-    recovery:
-}
-
-prebuilt_etc {
-    name: "ueventd.qcom.rc",
-    filename: "ueventd.rc",
-    src: "etc/ueventd.qcom.rc",
-    vendor: true,
-}
-
 // fstab
 prebuilt_etc {
     name: "fstab.at.qcom",
