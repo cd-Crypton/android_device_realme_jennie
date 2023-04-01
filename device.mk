@@ -280,17 +280,6 @@ PRODUCT_PACKAGES += \
 # Overlays
 $(call inherit-product, hardware/oplus/overlay/qssi/qssi.mk)
 
-DEVICE_PACKAGE_OVERLAYS += \
-    $(LOCAL_PATH)/overlay-lineage
-
-PRODUCT_ENFORCE_RRO_TARGETS := *
-PRODUCT_PACKAGES += \
-    FrameworksResTarget \
-    OPlusFrameworksResCommon \
-    OPlusSettingsResCommon \
-    OPlusSystemUIResCommon \
-    WifiResTarget
-
 # Partitions
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 BOARD_BUILD_SYSTEM_ROOT_IMAGE := false
@@ -484,14 +473,15 @@ PRODUCT_COPY_FILES += \
 TARGET_SCREEN_HEIGHT := 2400
 TARGET_SCREEN_WIDTH := 1080
 
+DEVICE_PACKAGE_OVERLAYS += \
+    $(LOCAL_PATH)/overlay \
+    $(LOCAL_PATH)/overlay-lineage
+
 PRODUCT_ENFORCE_RRO_TARGETS := *
 PRODUCT_PACKAGES += \
-    FrameworksResTarget \
-    WifiResTarget \
-    CarrierConfigResTarget \
-    OPlusFrameworksResTarget \
-    OPlusSettingsProviderResTarget \
-    OPlusSystemUIResTarget
+    FrameworksResTargetOverlay \
+    WifiResTargetOverlay \
+    CarrierConfigOverlay
 
 # Inherit the proprietary files
 $(call inherit-product, vendor/realme/ferrari/ferrari-vendor.mk)
