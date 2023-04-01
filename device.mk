@@ -4,6 +4,9 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
+LOCAL_PATH := device/realme/ferrari
+
+
 # Enable updating of APEXes
 $(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
 
@@ -15,8 +18,9 @@ ENABLE_VIRTUAL_AB := true
 $(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota/launch_with_vendor_ramdisk.mk)
 PRODUCT_PACKAGES += \
     tune2fs.vendor_ramdisk \
-    resize2fs.vendor_ramdisk
-
+    resize2fs.vendor_ramdisk \
+    snapuserd.vendor_ramdisk
+    
 # Prj Qouta
 $(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
 
@@ -40,7 +44,12 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     AntHalService-Soong \
     com.dsi.ant@1.0.vendor
-    
+
+# Api
+BOARD_API_LEVEL := 31
+BOARD_SHIPPING_API_LEVEL := $(BOARD_API_LEVEL)
+PRODUCT_SHIPPING_API_LEVEL := $(BOARD_API_LEVEL)
+
 # Atrace
 PRODUCT_PACKAGES += \
     android.hardware.atrace@1.0-service
@@ -53,16 +62,9 @@ PRODUCT_PACKAGES += \
     android.hardware.bluetooth.audio@2.1-impl \
     android.hardware.soundtrigger@2.3-impl \
     audio.bluetooth.default \
-    audio.primary.taro \
     audio.r_submix.default \
     audio.usb.default \
-    audioadsprpcd \
-    libbatterylistener \
-    libqcompostprocbundle \
-    libqcomvisualizer \
-    libqcomvoiceprocessing \
     libstdc++.vendor \
-    libvolumelistener \
     sound_trigger.primary.taro:32
 
 PRODUCT_COPY_FILES += \
@@ -130,15 +132,11 @@ PRODUCT_SET_DEBUGFS_RESTRICTIONS := true
 # Display
 PRODUCT_PACKAGES += \
     android.hardware.graphics.common-V2-ndk_platform.vendor \
-    android.hardware.graphics.mapper@4.0-impl-qti-display \
     android.hardware.memtrack@1.0-impl \
     android.hardware.memtrack@1.0-service \
     libdisplayconfig.qti \
     libdisplayconfig.system.qti \
-    libqdMetaData \
     libqdMetaData.system \
-    libsdmcore \
-    libsdmutils \
     libtinyxml \
     vendor.display.config@1.0 \
     vendor.display.config@1.15.vendor \
@@ -160,7 +158,7 @@ PRODUCT_PACKAGES += \
 
 # DRM
 PRODUCT_PACKAGES += \
-    android.hardware.drm@1.3.vendor \
+    android.hardware.drm@1.4.vendor \
     android.hardware.drm-service.clearkey
 
 # fastbootd
@@ -174,6 +172,10 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.fingerprint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.fingerprint.xml
+
+# vendor_ramdiks
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/rootdir/etc/fstab.qcom:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/first_stage_ramdisk/fstab.qcom
 
 # Gatekeeper
 PRODUCT_PACKAGES += \
@@ -213,7 +215,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     ipacm \
     IPACM_cfg.xml
-    
+
 # Init
 PRODUCT_PACKAGES += \
     init.at.class_main.sh \
@@ -233,7 +235,7 @@ PRODUCT_PACKAGES += \
     init.target.rc \
     init.recovery.qcom.rc \
     ueventd.qcom.rc
-
+    
 # Keymaster
 PRODUCT_PACKAGES += \
     android.hardware.keymaster@4.1.vendor
@@ -283,16 +285,11 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/com.android.nfc_extras.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/com.android.nfc_extras.xml \
     frameworks/native/data/etc/com.nxp.mifare.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/com.nxp.mifare.xml
 
-# OMX
-PRODUCT_PACKAGES += \
-    libstagefrighthw
-
 # Overlays
 $(call inherit-product, hardware/oplus/overlay/qssi/qssi.mk)
 
 # Partitions
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
-BOARD_BUILD_SYSTEM_ROOT_IMAGE := false
 
 # Power
 PRODUCT_PACKAGES += \
@@ -323,7 +320,7 @@ PRODUCT_PACKAGES += \
     libprotobuf-cpp-full \
     librmnetctl
 
-# Sensors
+# Sensors 
 PRODUCT_PACKAGES += \
     android.hardware.sensors@2.0-service.multihal \
     libsensorndkbridge \
@@ -344,9 +341,6 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.sensor.relative_humidity.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/sku_taro/android.hardware.sensor.relative_humidity.xml \
     frameworks/native/data/etc/android.hardware.sensor.stepcounter.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/sku_taro/android.hardware.sensor.stepcounter.xml \
     frameworks/native/data/etc/android.hardware.sensor.stepdetector.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/sku_taro/android.hardware.sensor.stepdetector.xml
-
-# Shipping API
-PRODUCT_SHIPPING_API_LEVEL := 31
 
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
@@ -402,10 +396,7 @@ PRODUCT_PACKAGES_DEBUG += \
 
 # USB
 PRODUCT_PACKAGES += \
-    android.hardware.usb@1.2-service-qti
-
-PRODUCT_SOONG_NAMESPACES += \
-    vendor/qcom/opensource/usb/etc
+    android.hardware.usb@1.3-service-qti
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.usb.accessory.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.usb.accessory.xml \
@@ -438,12 +429,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.wifi@1.0-service \
     android.hardware.wifi.hostapd@1.0.vendor \
-    hostapd \
-    libwpa_client \
-    libwifi-hal-ctrl \
-    libwifi-hal-qcom \
-    wpa_supplicant \
-    wpa_supplicant.conf
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.wifi.direct.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.wifi.direct.xml \
@@ -462,9 +447,6 @@ PRODUCT_BOOT_JARS += \
 # Product characteristics
 PRODUCT_CHARACTERISTICS := nosdcard
 
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/rootdir/etc/fstab.default:$(TARGET_VENDOR_RAMDISK_OUT)/first_stage_ramdisk/fstab.qcom
-
 # AAPT
 PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREF_CONFIG := xxhdpi
@@ -477,7 +459,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/audio/sound_trigger_mixer_paths.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio/sku_taro/sound_trigger_mixer_paths.xml \
     $(LOCAL_PATH)/audio/sound_trigger_platform_info.xml:$(TARGET_COPY_OUT_ODM)/etc/sound_trigger_platform_info.xml \
     $(LOCAL_PATH)/audio/sound_trigger_platform_info.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio/sku_taro/sound_trigger_platform_info.xml
-
 
 # Boot animation
 TARGET_SCREEN_HEIGHT := 2400

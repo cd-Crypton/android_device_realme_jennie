@@ -5,7 +5,6 @@
   
     <application
        android:allowBackup="false"
-       android:extractNativeLibs="false"
        android:hasCode="false"/>
     <overlay
       android:isStatic="true"
