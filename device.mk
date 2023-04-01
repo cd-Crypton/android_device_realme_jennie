@@ -7,8 +7,18 @@
 # Enable updating of APEXes
 $(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
 
-# Virtual A/B (vendor_boot)
+# Developers GSI Key
+$(call inherit-product, $(SRC_TARGET_DIR)/product/developer_gsi_keys.mk)
+
+# A/B
+ENABLE_VIRTUAL_AB := true
 $(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota/launch_with_vendor_ramdisk.mk)
+PRODUCT_PACKAGES += \
+    tune2fs.vendor_ramdisk \
+    resize2fs.vendor_ramdisk
+
+# Prj Qouta
+$(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
 
 AB_OTA_POSTINSTALL_CONFIG += \
     RUN_POSTINSTALL_system=true \
