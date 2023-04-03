@@ -106,17 +106,18 @@ TARGET_KERNEL_SOURCE := kernel/$(PRODUCT_BRAND)/$(PRODUCT_DEVICE)
 
 # Kernel Modules
 KERNEL_MODULE_DIR := $(DEVICE_PATH)/modules
-BOOT_KERNEL_MODULES := $(BOARD_VENDOR_RAMDISK_RECOVERY_KERNEL_MODULES_LOAD)
 
-RAMDISK_KERNEL_MODULES := $(wildcard $(KERNEL_MODULE_DIR)/vendor_boot/*.ko)
 BOARD_VENDOR_RAMDISK_KERNEL_MODULES_LOAD := $(strip $(shell cat $(KERNEL_MODULE_DIR)/vendor_boot/config/vendor_boot.modules.load))
 BOARD_VENDOR_RAMDISK_RECOVERY_KERNEL_MODULES_LOAD := $(strip $(shell cat $(KERNEL_MODULE_DIR)/vendor_boot/config/vendor_boot.modules.load.recovery))
-BOARD_VENDOR_RAMDISK_KERNEL_MODULES := $(RAMDISK_KERNEL_MODULES)
+BOARD_VENDOR_RAMDISK_KERNEL_MODULES_BLOCKLIST_FILE := $(KERNEL_MODULE_DIR)/vendor_boot/config/vendor_boot.modules.blocklist
+BOARD_VENDOR_RAMDISK_KERNEL_MODULES := $(wildcard $(KERNEL_MODULE_DIR)/vendor_boot/*.ko)
 
-KERNEL_MODULES := $(wildcard $(KERNEL_MODULE_DIR)/vendor_dlkm/*.ko)
 BOARD_VENDOR_KERNEL_MODULES_BLOCKLIST_FILE := $(KERNEL_MODULE_DIR)/vendor_dlkm/config/vendor_dlkm.modules.blocklist
 BOARD_VENDOR_KERNEL_MODULES_LOAD := $(strip $(shell cat $(KERNEL_MODULE_DIR)/vendor_dlkm/config/vendor_dlkm.modules.load))
-BOARD_VENDOR_KERNEL_MODULES := $(KERNEL_MODULES)
+BOARD_VENDOR_KERNEL_MODULES := $(wildcard $(KERNEL_MODULE_DIR)/vendor_dlkm/*.ko)
+
+BOARD_RECOVERY_KERNEL_MODULES := $(wildcard $(KERNEL_MODULE_DIR)/ramdisk/*.ko)
+BOARD_RECOVERY_KERNEL_MODULES_LOAD := $(strip $(shell cat $(KERNEL_MODULE_DIR)/ramdisk/config/modules.load.recovery))
 
 # Kernel - prebuilt
 TARGET_FORCE_PREBUILT_KERNEL := true
