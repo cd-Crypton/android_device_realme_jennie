@@ -12,18 +12,18 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 $(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 
 # Inherit from ferrari device
-$(call inherit-product, device/realme/ferrari/device.mk)
+$(call inherit-product, device/realme/jennie/device.mk)
 
-PRODUCT_DEVICE := ferrari
-PRODUCT_NAME := lineage_ferrari
+PRODUCT_DEVICE := jennie
+PRODUCT_NAME := lineage_jennie
 PRODUCT_BRAND := realme
-PRODUCT_MODEL := Realme GT2 Pro
+PRODUCT_MODEL := RMX3551
 PRODUCT_PLATFORM := taro
 PRODUCT_MANUFACTURER := $(PRODUCT_BRAND)
 
 PRODUCT_GMS_CLIENTID_BASE := android-$(PRODUCT_BRAND)
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
-    PRIVATE_BUILD_DESC="ferrari-user 13 TP1A.220905.001 S.efdd7c-12480-1247f release-keys" \
+    PRIVATE_BUILD_DESC="RMX3551-user 13 TP1A.220905.001 S.efdd7c-12480-1247f release-keys" \
 
-BUILD_FINGERPRINT := $(PRODUCT_BRAND)/$(PRODUCT_DEVICE)/lineage_ferrari:13/TPIA.220905.001/S.efdd7c-12480-1247:user/release-keys
+BUILD_FINGERPRINT := $(PRODUCT_BRAND)/$(PRODUCT_DEVICE)/$(PRODUCT_MAME):13/TPIA.220905.001/S.efdd7c-12480-1247:user/release-keys
