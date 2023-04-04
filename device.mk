@@ -479,4 +479,4 @@ PRODUCT_PACKAGES += \
     CarrierConfigOverlay
 
 # Inherit the proprietary files
-$(call inherit-product, vendor/realme/ferrari/ferrari-vendor.mk)
+$(call inherit-product, vendor/realme/jennie/jennie-vendor.mk)
