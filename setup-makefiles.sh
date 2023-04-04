@@ -8,7 +8,7 @@
 
 set -e
 
-DEVICE=ferrari
+DEVICE=jennie
 VENDOR=realme
 
 # Load extract_utils and do some sanity checks

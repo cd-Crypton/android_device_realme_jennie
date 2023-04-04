@@ -1,1 +1,1 @@
-require board=ferrari|RMX3301|RMX3300|RED8ACL1|RE547F
+require board=jennie|RMX3551

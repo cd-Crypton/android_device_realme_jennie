@@ -5,9 +5,9 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/lineage_ferrari.mk
+    $(LOCAL_DIR)/lineage_jennie.mk
 
 COMMON_LUNCH_CHOICES := \
-    lineage_ferrari-user \
-    lineage_ferrari-userdebug \
-    lineage_ferrari-eng
+    lineage_jennie-user \
+    lineage_jennie-userdebug \
+    lineage_jennie-eng

@@ -4,7 +4,7 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-LOCAL_PATH := device/realme/ferrari
+LOCAL_PATH := device/realme/jennie
 
 
 # Enable updating of APEXes

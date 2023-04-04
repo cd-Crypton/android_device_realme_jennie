@@ -1,4 +1,4 @@
-## Android Device Tree for Realme/Ferrari
+## Android Device Tree for RMX3551
 
 ```
 # Copyright (C) 2023 The LineageOS Project
