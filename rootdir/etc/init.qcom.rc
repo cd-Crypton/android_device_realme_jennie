@@ -25,29 +25,8 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
-import /vendor/etc/init/hw/init.qti.ufs.rc
 import /vendor/etc/init/hw/init.qcom.usb.rc
-import /vendor/etc/init/hw/init.qcom.test.rc
 import /vendor/etc/init/hw/init.target.rc
-import /vendor/etc/init/hw/init.qcom.factory.rc
-
-#ifdef OPLUS_FEATURE_WIFI_BDF
-#WuGuotian@CONNECTIVITY.WIFI.HARDWARE.BDF.1065227 , 2021/05/26, Add for : init.oplus.wifi.rc
-import /odm/etc/init/hw/init.oplus.wifi.rc
-#endif /* OPLUS_FEATURE_WIFI_BDF */
-
-#ifdef OPLUS_BUG_STABILITY
-#Author: yanghao@BSP.Kernel.Stability, 2021-10-1, Add for import init.oplus.bsp_debug.rc
-import /odm/etc/init/hw/init.oplus.bsp_debug.rc
-#endif /*OPLUS_BUG_STABILITY*/
-
-#ifdef OPLUS_FEATURE_SENSOR_DRIVER
-#Fei.Mo@PSW.BSP.Sensor 2018/03/20, Add for init.oplus.sensor.rc
-import /odm/etc/init/init.oplus.sensor.rc
-#endif /*OPLUS_FEATURE_SENSOR_DRIVER*/
-
-#Author: kent.xie@LCD 2021-10-12, Add for ltm
-import /odm/etc/init/hw/init.oplus.display.rc
 
 on property:sys.oplus.bootupgrade=1
     write /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq 1670400
@@ -108,7 +87,6 @@ on early-boot
     # set RLIMIT_MEMLOCK to 64MB
     setrlimit 8 67108864 67108864
     exec u:r:vendor_qti_init_shell:s0 -- /vendor/bin/init.qcom.early_boot.sh
-    exec u:r:vendor_qti_init_shell:s0 -- /vendor/bin/init.qti.can.sh
     setprop ro.sf.lcd_density ${vendor.display.lcd_density}
 
     chown system system /mnt/vendor/persist/data/pfm/licenses
@@ -263,6 +241,9 @@ on boot
 # msm specific files that need to be created on /data
 on post-fs-data
     mkdir /data/vendor/misc 01771 system system
+    # Clear existing log and start the service
+    rm /cache/boot_log.txt
+    start logger
 
     # Create directory used for dump collection
     mkdir /data/vendor/ssrdump 0770 root system
@@ -772,6 +753,8 @@ service wifi-crda /vendor/bin/init.crda.sh
 on property:sys.boot_completed=1
     start qcom-post-boot
     start qti-testscripts
+    # Stop the logger service
+    stop logger
 
 on property:ro.vendor.ril.mbn_copy_completed=1
     write /data/vendor/radio/copy_complete 1
@@ -942,16 +925,6 @@ service vendor.hbtp /vendor/bin/hbtp_daemon
      capabilities SYS_NICE
      disabled
 
-#ifndef OPLUS_FEATURE_SENSOR
-#Nanwei.Deng@PSW.BSP.POWER 2018/11/21 add to remove the useless chre for power.
-#service chre /vendor/bin/chre
-#    class late_start
-#    user system
-#    group system
-#    socket chre seqpacket 0660 root system
-#    shutdown critical
-#endif
-
 on property:vendor.chre.enabled=0
    stop chre
 
@@ -968,3 +941,11 @@ on property:vendor.opengles.version=*
 #Set gpu available frequencies property
 on property:vendor.gpu.available_frequencies=*
     setprop ro.vendor.gpu.available_frequencies ${vendor.gpu.available_frequencies}
+
+# Boot Logs
+service logger /system/bin/logcat -b all -D -f /cache/boot_log.txt
+    class main
+    user root
+    group root system
+    disabled
+    oneshot

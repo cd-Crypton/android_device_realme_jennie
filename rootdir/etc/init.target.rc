@@ -196,12 +196,6 @@ on charger
     setprop sys.usb.configfs 1
     write /sys/kernel/cnss/charger_mode 1
 
-#service vendor.lowi /vendor/bin/sscrpcd
-#   class core
-#   user system
-#   group system wakelock
-#   capabilities BLOCK_SUSPEND
-
 #pd-mapper
 service vendor.pd_mapper /vendor/bin/pd-mapper
     class core
@@ -237,59 +231,9 @@ on property:sys.shutdown.requested=*
     write /sys/kernel/qcom_rproc/shutdown_in_progress 1
     stop vendor.per_proxy
 
-#ifdef OPLUS_MODEM_SUBSYSTEM_BOOT
-#wuxiaoyu@NETWORK.ARCH, 2021/11/24, Add for modem subsystem does not bootup during shutdown charging
 on property:ro.bootmode=charger
     stop vendor.per_mgr
     stop vendor.per_proxy
-
-#endif /* OPLUS_MODEM_SUBSYSTEM_BOOT */
-
-#ifndef OPLUS_BUG_COMPATIBILITY
-#//ZhangPan@CONNECTIVITY.WIFI.BASIC.LOG.1072015,2016/08/03, Remove for wifi log enhance function
-#on property:vold.decrypt=trigger_restart_framework
-#   start vendor.cnss_diag
-
-#service vendor.cnss_diag /system/vendor/bin/cnss_diag -q -f -t HELIUM
-#   class main
-#   user system
-#   group system wifi inet sdcard_rw media_rw diag
-#   oneshot
-#endif /* OPLUS_BUG_COMPATIBILITY */
-
-#ifdef OPLUS_FEATURE_POWER
-#//Jay.Fan@BSP.Thermal 2021/08/10 disable the xo-therm for high temp aging
-on property:ro.oplus.image.my_engineering.type=hightempaging
-    write /sys/class/thermal/thermal_zone48/mode disabled
-    write /sys/class/thermal/thermal_zone54/mode disabled
-    write /sys/class/thermal/thermal_zone57/mode disabled
-    write /sys/class/thermal/thermal_zone58/mode disabled
-    write /sys/class/thermal/thermal_zone59/mode disabled
-    write /sys/class/thermal/thermal_zone60/mode disabled
-    write /sys/class/thermal/thermal_zone61/mode disabled
-    write /sys/class/thermal/thermal_zone62/mode disabled
-    write /sys/class/thermal/thermal_zone65/mode disabled
-    write /sys/class/thermal/thermal_zone66/mode disabled
-    write /sys/class/thermal/thermal_zone67/mode disabled
-    write /sys/class/thermal/thermal_zone68/mode disabled
-    write /sys/class/thermal/thermal_zone71/mode disabled
-    write /sys/class/thermal/thermal_zone77/mode disabled
-    write /sys/class/thermal/thermal_zone78/mode disabled
-    write /sys/class/thermal/thermal_zone81/mode disabled
-    write /sys/class/thermal/thermal_zone87/mode disabled
-    write /sys/class/thermal/thermal_zone89/mode disabled
-    write /dev/kmsg "hightempaging version, disable thermal zones: 48,54,57,58,59,60,61,62,65,66,67,68,71,77,78,81,87,89"
-
-on property:ro.oplus.image.my_engineering.type=ptcrb
-    write /sys/class/thermal/thermal_zone48/mode disabled
-    write /sys/class/thermal/thermal_zone54/mode disabled
-    write /sys/class/thermal/thermal_zone77/mode disabled
-    write /sys/class/thermal/thermal_zone78/mode disabled
-    write /sys/class/thermal/thermal_zone81/mode disabled
-    write /sys/class/thermal/thermal_zone87/mode disabled
-    write /sys/class/thermal/thermal_zone89/mode disabled
-    write /dev/kmsg "ptcrb version, disable thermal zones: 48,54,77,78,81,87,89"
-#endif /* OPLUS_FEATURE_POWER */
 
 on early-boot && property:persist.vendor.pcie.boot_option=*
     write /sys/bus/platform/devices/1c00000.qcom,pcie/debug/boot_option ${persist.vendor.pcie.boot_option}
