@@ -79,11 +79,11 @@ TARGET_SURFACEFLINGER_UDFPS_LIB := //hardware/oplus:libudfps_extension.oplus
 # HIDL
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE := \
     $(DEVICE_PATH)/configs/device/device_framework_matrix.xml \
-    hardware/qcom-caf/common/vendor_framework_compatibility_matrix.xml \
-    vendor/lineage/config/device_framework_matrix.xml
+    $(DRVICE_PATH)/configs/device/vendor_framework_compatibility_matrix.xml \
+DEVICE_FRAMEWORK_MANIFEST_FILE += 
 DEVICE_MATRIX_FILE := $(DEVICE_PATH)/configs/device/compatibility_matrix.xml
-DEVICE_MANIFEST_FILE := $(DEVICE_PATH)/configs/device/manifest.xml
-ODM_MANIFEST_FILES := $(DEVICE_PATH)/configs/device/manifest_odm.xml
+DEVICE_MANIFEST_FILE := $(DEVICE_PATH)/configs/device/manifest_taro.xml
+
 
 # Kernel
 BOARD_BOOT_HEADER_VERSION := 4
