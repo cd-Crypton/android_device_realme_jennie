@@ -116,9 +116,6 @@ BOARD_VENDOR_KERNEL_MODULES_BLOCKLIST_FILE := $(KERNEL_MODULE_DIR)/vendor_dlkm/c
 BOARD_VENDOR_KERNEL_MODULES_LOAD := $(strip $(shell cat $(KERNEL_MODULE_DIR)/vendor_dlkm/config/vendor_dlkm.modules.load))
 BOARD_VENDOR_KERNEL_MODULES := $(wildcard $(KERNEL_MODULE_DIR)/vendor_dlkm/*.ko)
 
-BOARD_RECOVERY_KERNEL_MODULES := $(wildcard $(KERNEL_MODULE_DIR)/ramdisk/*.ko)
-BOARD_RECOVERY_KERNEL_MODULES_LOAD := $(strip $(shell cat $(KERNEL_MODULE_DIR)/ramdisk/config/modules.load.recovery))
-
 # Platform
 BOARD_USES_QCOM_HARDWARE := true
 TARGET_BOARD_PLATFORM := $(PRODUCT_PLATFORM)
