@@ -5,10 +5,11 @@
 #
 
 LOCAL_PATH := device/realme/jennie
+
 # Prebuilt Kernel Binary
 TARGET_KERNEL_VERSION := 5.10
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/prebuilts/kernel:kernel \
+    $(LOCAL_PATH)/prebuilts/Image:kernel \
     $(LOCAL_PATH)/prebuilts/dtb.img:dtb.img
 
 # Enable updating of APEXes
