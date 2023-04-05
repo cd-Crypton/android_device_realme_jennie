@@ -20,7 +20,6 @@ AB_OTA_PARTITIONS += \
     vendor_dlkm \
     odm \
     boot \
-    recovery \
     dtbo \
     vbmeta \
     vbmeta_system
