@@ -14,8 +14,8 @@ $(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 # Inherit from jennie device
 $(call inherit-product, device/realme/jennie/device.mk)
 
-PRODUCT_DEVICE := ferrari
-PRODUCT_NAME := lineage_ferrari
+PRODUCT_DEVICE := jennie
+PRODUCT_NAME := lineage_jennie
 PRODUCT_BRAND := realme
 PRODUCT_MODEL := RMX3551
 PRODUCT_PLATFORM := taro
