@@ -495,8 +495,8 @@ PRODUCT_COPY_FILES += \
     prebuilts/vndk/v32/arm64/arch-arm64-armv8-a/shared/vndk-sp/libhidlbase.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libhidlbase-v32.so
 
 # Recovery Modules
-PRODUCT_COPY_FILES += \
-    $(call find-copy-subdir-files,*.ko,device/realme/jennie/modules/ramdisk,$(TARGET_COPY_OUT_RECOVERY)/root/vendor/lib/modules/)
+# PRODUCT_COPY_FILES += \
+#    $(call find-copy-subdir-files,*.ko,device/realme/jennie/modules/ramdisk,$(TARGET_COPY_OUT_RECOVERY)/root/vendor/lib/modules/)
 
 # Inherit the proprietary files
 $(call inherit-product, vendor/realme/jennie/jennie-vendor.mk)
