@@ -91,6 +91,8 @@ vendor/lib64/hw/com.dsi.ant@1.0-impl.so
 # Audio
 vendor/lib/hw/audio.primary.taro.so
 vendor/lib64/hw/audio.primary.taro.so
+vendor/lib/hw/sound_trigger.primary.taro.so
+vendor/lib64/hw/sound_trigger.primary.taro.so
 vendor/bin/audioadsprpcd
 -vendor/lib/libar-gsl.so
 -vendor/lib/libar-pal.so
@@ -1266,12 +1268,6 @@ vendor/lib64/libxtwifi_server_protocol_uri_v3.so
 vendor/lib64/vendor.qti.gnss-service.so
 vendor/lib64/vendor.qti.gnss-V1-ndk_platform.so
 
-# Hotword Enrollment
-my_product/etc/sysconfig/com.android.hotwordenrollment.common.util.xml:product/etc/sysconfig/com.android.hotwordenrollment.common.util.xml
-my_product/framework/com.android.hotwordenrollment.common.util.jar:product/framework/com.android.hotwordenrollment.common.util.jar
-my_product/priv-app/HotwordEnrollmentOKGoogleHEXAGON.apk:product/priv-app/HotwordEnrollmentOKGoogleHEXAGON/HotwordEnrollmentOKGoogleHEXAGON.apk
-my_product/priv-app/HotwordEnrollmentXGoogleHEXAGON.apk:product/priv-app/HotwordEnrollmentXGoogleHEXAGON/HotwordEnrollmentXGoogleHEXAGON.apk
-
 # IMS
 vendor/bin/ims_rtp_daemon
 vendor/bin/imsdaemon
@@ -1845,7 +1841,6 @@ odm/bin/hw/android.hardware.drm@1.4-service.widevine
 odm/etc/init/android.hardware.drm@1.4-service.widevine.rc
 odm/etc/vintf/manifest/manifest_android.hardware.drm@1.4-service.widevine.xml
 odm/lib64/mediadrm/libwvdrmengine.so
-odm/lib64/liboemcrypto.so
 vendor/etc/oplus_Widevine_licenses.pfm
 vendor/lib64/libtrustedapploader.so
 vendor/lib64/libwvhidl.so
