@@ -251,6 +251,7 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += \
     fstab.at.qcom \
+    fstab.qcom \
     init.at.qcom.rc \
     init.at.target.rc \
     init.qcom.rc \
