@@ -90,3 +90,9 @@ prebuilt_etc {
     src: "etc/fstab.at.qcom",
     vendor: true,
 }
+
+prebuilt_etc {
+    name: "fstab.qcom",
+    src: "etc/fstab.qcom",
+    vendor: true,
+}
