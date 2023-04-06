@@ -79,12 +79,11 @@ TARGET_SURFACEFLINGER_UDFPS_LIB := //hardware/oplus:libudfps_extension.oplus
 # HIDL
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE := \
     $(DEVICE_PATH)/configs/device/device_framework_matrix.xml \
-    $(DEVICE_PATH)/configs/device/vendor_framework_compatibility_matrix.xml \
-    $(DEVICE_PATH)/configs/device/lineage_device_framework_matrix.xml
+    hardware/qcom-caf/common/vendor_framework_compatibility_matrix.xml \
+    vendor/lineage/config/device_framework_matrix.xml
 DEVICE_MATRIX_FILE := $(DEVICE_PATH)/configs/device/compatibility_matrix.xml
 DEVICE_MANIFEST_FILE := $(DEVICE_PATH)/configs/device/manifest_taro.xml
 ODM_MANIFEST_FILES := $(DEVICE_PATH)/configs/device/manifest_odm.xml
-
 
 # Kernel
 BOARD_BOOT_HEADER_VERSION := 4
@@ -108,14 +107,15 @@ BOARD_PREBUILT_DTBOIMAGE := $(DEVICE_PATH)/prebuilts/dtbo.img
 # Kernel Modules
 KERNEL_MODULE_DIR := $(DEVICE_PATH)/modules
 
+RAMDISK_KERNEL_MODULES := $(wildcard $(KERNEL_MODULE_DIR)/vendor_boot/*.ko)
 BOARD_VENDOR_RAMDISK_KERNEL_MODULES_LOAD := $(strip $(shell cat $(KERNEL_MODULE_DIR)/vendor_boot/config/vendor_boot.modules.load))
 BOARD_VENDOR_RAMDISK_RECOVERY_KERNEL_MODULES_LOAD := $(strip $(shell cat $(KERNEL_MODULE_DIR)/vendor_boot/config/vendor_boot.modules.load.recovery))
-BOARD_VENDOR_RAMDISK_KERNEL_MODULES_BLOCKLIST_FILE := $(KERNEL_MODULE_DIR)/vendor_boot/config/vendor_boot.modules.blocklist
-BOARD_VENDOR_RAMDISK_KERNEL_MODULES := $(wildcard $(KERNEL_MODULE_DIR)/vendor_boot/*.ko)
+BOARD_VENDOR_RAMDISK_KERNEL_MODULES := $(RAMDISK_KERNEL_MODULES)
 
+KERNEL_MODULES := $(wildcard $(KERNEL_MODULE_DIR)/vendor_dlkm/*.ko)
 BOARD_VENDOR_KERNEL_MODULES_BLOCKLIST_FILE := $(KERNEL_MODULE_DIR)/vendor_dlkm/config/vendor_dlkm.modules.blocklist
 BOARD_VENDOR_KERNEL_MODULES_LOAD := $(strip $(shell cat $(KERNEL_MODULE_DIR)/vendor_dlkm/config/vendor_dlkm.modules.load))
-BOARD_VENDOR_KERNEL_MODULES := $(wildcard $(KERNEL_MODULE_DIR)/vendor_dlkm/*.ko)
+BOARD_VENDOR_KERNEL_MODULES := $(KERNEL_MODULES)
 
 # Platform
 BOARD_USES_QCOM_HARDWARE := true
