@@ -7,15 +7,9 @@
   },
   {
     "remote": "github",
-    "repository": "cd-Crypton/android_hardware_qcom_display",
-    "target_path": "hardware/qcom-caf/sm8450/display",
-    "revision": "lineage-20.0-sm8450"
-  },
-  {
-    "remote": "github",
-    "repository": "cd-Crypton/android_hardware_qcom_audio",
-    "target_path": "hardware/qcom-caf/sm8450/audio",
-    "revision": "lineage-20.0-caf-sm8450"
+    "repository": "cd-Crypton/android_hardware_qcom-caf_sm8450",
+    "target_path": "hardware/qcom-caf/sm8450",
+    "revision": "13"
   },
   {
     "remote": "github",
