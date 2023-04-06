@@ -1,6 +1,14 @@
 [
   {
+    "remote": "github",
     "repository": "crdroidandroid/android_hardware_oplus",
-    "target_path": "hardware/oplus"
+    "target_path": "hardware/oplus",
+    "revision": "13.0"
+  },
+  {
+    "remote": "github",
+    "repository": "cd-Crypton/android_hardware_qcom_display",
+    "target_path": "hardware/qcom-caf/sm8450/display",
+    "revision": "lineage-20.0-sm8450"
   }
 ]
