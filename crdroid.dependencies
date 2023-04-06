@@ -10,5 +10,17 @@
     "repository": "cd-Crypton/android_hardware_qcom_display",
     "target_path": "hardware/qcom-caf/sm8450/display",
     "revision": "lineage-20.0-sm8450"
+  },
+  {
+    "remote": "github",
+    "repository": "cd-Crypton/android_hardware_qcom_audio",
+    "target_path": "hardware/qcom-caf/sm8450/audio",
+    "revision": "lineage-20.0-caf-sm8450"
+  },
+  {
+    "remote": "github",
+    "repository": "cd-Crypton/kernel_realme_jennie",
+    "target_path": "kernel/realme/jennie",
+    "revision": "jennie-13"
   }
 ]
