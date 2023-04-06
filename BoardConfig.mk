@@ -68,7 +68,7 @@ BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(DEVICE_PATH)/bluetooth/include
 TARGET_VENDOR_PROP += $(DEVICE_PATH)/configs/properties/vendor.prop
 TARGET_PRODUCT_PROP += $(DEVICE_PATH)/configs/properties/product.prop
 TARGET_SYSTEM_EXT_PROP += $(DEVICE_PATH)/configs/properties/system_ext.prop
-TARGET_ODM_PROP += $(DEVICE_PATH)/configs/properties/odm.prop
+#TARGET_ODM_PROP += $(DEVICE_PATH)/configs/properties/odm.prop
 
 # Filesystem
 TARGET_FS_CONFIG_GEN := $(DEVICE_PATH)/configs/config.fs
@@ -96,7 +96,7 @@ BOARD_KERNEL_CMDLINE += \
      loop.max_part=7
 BOARD_BOOTCONFIG += \
      androidboot.hardware=qcom \
-     androidboot.memcg=1
+     androidboot.memcg=1 \
      androidboot.usbcontroller=a600000.dwc3 \
      androidboot.bootdevice=1d84000.ufshc \
      androidboot.force_normal_boot=1 \
