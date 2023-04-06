@@ -20,8 +20,8 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/developer_gsi_keys.mk)
 
 # A/B
 ENABLE_VIRTUAL_AB := true
-$(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota/launch.mk)
-PRODUCT_PACKAGES += \
+$(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota/compression.mk)
+#PRODUCT_PACKAGES += \
     linker.vendor_ramdisk \
     e2fsck.vendor_ramdisk \
     snapuserd.vendor_ramdisk
