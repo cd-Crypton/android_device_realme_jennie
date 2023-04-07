@@ -128,6 +128,9 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.bluetooth.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.bluetooth.xml \
     frameworks/native/data/etc/android.hardware.bluetooth_le.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.bluetooth_le.xml
 
+# Boot control HAL test app
+PRODUCT_PACKAGES_DEBUG += bootctl
+
 PRODUCT_PACKAGES += \
     android.hardware.boot@1.2-impl-qti \
     android.hardware.boot@1.2-impl-qti.recovery \
@@ -183,6 +186,12 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.drm@1.4.vendor \
     android.hardware.drm-service.clearkey
+
+# f2fs utilities
+PRODUCT_PACKAGES += \
+    sg_write_buffer \
+    f2fs_io \
+    check_f2fs
 
 # fastbootd
 PRODUCT_PACKAGES += \
