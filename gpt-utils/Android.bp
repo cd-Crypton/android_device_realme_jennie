@@ -16,7 +16,7 @@
 
 
 cc_library {
-    name: "libgptutils.realms_taro",
+    name: "libgptutils.realme_taro",
     vendor: true,
     recovery_available: true,
     shared_libs: [
