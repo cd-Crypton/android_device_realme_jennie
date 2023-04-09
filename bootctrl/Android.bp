@@ -15,6 +15,7 @@
 //
 
 soong_namespace {
+    imports: ["hardware/qcom-caf/bootctrl"],
 }
 
 cc_library_shared {
