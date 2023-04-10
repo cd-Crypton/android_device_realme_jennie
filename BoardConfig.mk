@@ -94,7 +94,8 @@ BOARD_KERNEL_CMDLINE += \
      cgroup.memory=nokmem,nosocket \
      service_locator.enable=1 \
      swiotlb=noforce \
-     loop.max_part=7
+     loop.max_part=7 \
+     bootconfig
 BOARD_BOOTCONFIG += \
      androidboot.hardware=qcom \
      androidboot.memcg=1 \
