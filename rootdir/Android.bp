@@ -7,18 +7,6 @@
 // Init scripts
 
 sh_binary {
-    name: "init.at.class_main.sh",
-    src: "bin/init.at.class_main.sh",
-    vendor: true,
-}
-
-sh_binary {
-    name: "init.at.post_boot.sh",
-    src: "bin/init.at.post_boot.sh",
-    vendor: true,
-}
-
-sh_binary {
     name: "init.class_main.sh",
     src: "bin/init.class_main.sh",
     vendor: true,
@@ -50,20 +38,6 @@ sh_binary {
 
 // Init configuration files
 prebuilt_etc {
-    name: "init.at.qcom.rc",
-    src: "etc/init.at.qcom.rc",
-    sub_dir: "init/hw",
-    vendor: true,
-}
-
-prebuilt_etc {
-    name: "init.at.target.rc",
-    src: "etc/init.at.target.rc",
-    sub_dir: "init/hw",
-    vendor: true,
-}
-
-prebuilt_etc {
     name: "init.qcom.rc",
     src: "etc/init.qcom.rc",
     sub_dir: "init/hw",
@@ -85,12 +59,6 @@ prebuilt_etc {
 }
 
 // fstab
-prebuilt_etc {
-    name: "fstab.at.qcom",
-    src: "etc/fstab.at.qcom",
-    vendor: true,
-}
-
 prebuilt_etc {
     name: "fstab.qcom",
     src: "etc/fstab.qcom",

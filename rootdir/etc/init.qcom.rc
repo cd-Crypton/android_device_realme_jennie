@@ -25,13 +25,11 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
+import /vendor/etc/init/hw/init.qti.ufs.rc
 import /vendor/etc/init/hw/init.qcom.usb.rc
+import /vendor/etc/init/hw/init.qcom.test.rc
 import /vendor/etc/init/hw/init.target.rc
-
-on property:sys.oplus.bootupgrade=1
-    write /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq 1670400
-    write /sys/devices/system/cpu/cpu7/cpufreq/scaling_max_freq 1958400
-    write /dev/kmsg "first boot, sys.oplus.bootupgrade = 1.  limit cpufreq."
+import /vendor/etc/init/hw/init.qcom.factory.rc
 
 on early-init
     mount tracefs tracefs /sys/kernel/tracing

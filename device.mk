@@ -239,8 +239,6 @@ PRODUCT_PACKAGES += \
 
 # Init
 PRODUCT_PACKAGES += \
-    init.at.class_main.sh \
-    init.at.post_boot.sh \
     init.class_main.sh \
     init.qcom.early_boot.sh \
     init.qcom.post_boot.sh \
@@ -248,10 +246,7 @@ PRODUCT_PACKAGES += \
     init.qcom.usb.sh
 
 PRODUCT_PACKAGES += \
-    fstab.at.qcom \
     fstab.qcom \
-    init.at.qcom.rc \
-    init.at.target.rc \
     init.qcom.rc \
     init.qcom.usb.rc \
     init.target.rc \
@@ -366,7 +361,8 @@ PRODUCT_COPY_FILES += \
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH) \
-    hardware/oplus
+    hardware/oplus \
+    vendor/qcom/opensource/usb/etc
 
 # Storage
 $(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
