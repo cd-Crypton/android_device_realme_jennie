@@ -482,7 +482,6 @@ BOARD_VNDK_VERSION := current
 PRODUCT_EXTRA_VNDK_VERSIONS := 30 31 32
 PRODUCT_COPY_FILES += \
     prebuilts/vndk/v32/arm64/arch-arm64-armv8-a/shared/vndk-sp/libhidlbase.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libhidlbase-v32.so
-    prebuilts/vndk/v30/arm/arch-arm-armv7-a-neon/shared/vndk-core/libui.so:$(TARGET_COPY_OUT_VENDOR)/lib/libui-v30.so
 
 # Inherit the proprietary files
 $(call inherit-product, vendor/realme/jennie/jennie-vendor.mk)
