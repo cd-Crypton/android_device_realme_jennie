@@ -124,7 +124,9 @@ PRODUCT_PACKAGES_DEBUG += bootctl
 PRODUCT_PACKAGES += \
     android.hardware.boot@1.2-impl-qti \
     android.hardware.boot@1.2-impl-qti.recovery \
-    android.hardware.boot@1.2-service
+    android.hardware.boot@1.2-service \
+    bootctrl.taro \
+    bootctrl.taro_recovery
 
 # Camera
 PRODUCT_PACKAGES += \
@@ -479,9 +481,6 @@ PRODUCT_PACKAGES += \
 
 # VNDK
 BOARD_VNDK_VERSION := current
-PRODUCT_EXTRA_VNDK_VERSIONS := 30 31 32
-PRODUCT_COPY_FILES += \
-    prebuilts/vndk/v32/arm64/arch-arm64-armv8-a/shared/vndk-sp/libhidlbase.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libhidlbase-v32.so
 
 # Inherit the proprietary files
 $(call inherit-product, vendor/realme/jennie/jennie-vendor.mk)
