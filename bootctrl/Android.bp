@@ -5,7 +5,7 @@
 //
 
 cc_library {
-    name: "bootctr.taro",
+    name: "bootctrl.taro",
     defaults: ["bootctrl_hal_defaults"],
     static_libs: ["librecovery_updater_taro"],
 }
