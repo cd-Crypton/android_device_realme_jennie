@@ -4,10 +4,10 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-BUILD_BROKEN_DUP_RULES := true
-BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true
-
-DEVICE_PATH := device/$(PRODUCT_BRAND)/$(PRODUCT_DEVICE)
+DEVICE_PATH := device/realme/jennie
+QCOM_COMMON_PATH := device/qcom/common
+include $(QCOM_COMMON_PATH)/BordConfigQcom.mk
+include vendor/realme/jennie/BoardConfigVendor.mk
 
 # A/B
 AB_OTA_UPDATER := true
@@ -27,7 +27,7 @@ AB_OTA_PARTITIONS += \
 
 # Architecture
 TARGET_ARCH := arm64
-TARGET_ARCH_VARIANT := armv8-2a-dotprod
+TARGET_ARCH_VARIANT := armv8-a
 TARGET_CPU_ABI := arm64-v8a
 TARGET_CPU_ABI2 := 
 TARGET_CPU_VARIANT := generic
@@ -43,48 +43,27 @@ TARGET_2ND_CPU_VARIANT_RUNTIME := cortex-a75
 # ANT+
 BOARD_ANT_WIRELESS_DEVICE := "qualcomm-hidl"
 
-# Audio
-AUDIO_FEATURE_ENABLED_DLKM := true
-AUDIO_FEATURE_ENABLED_EXTENDED_COMPRESS_FORMAT := true
-AUDIO_FEATURE_ENABLED_GEF_SUPPORT := true
-AUDIO_FEATURE_ENABLED_GKI := true
-AUDIO_FEATURE_ENABLED_INSTANCE_ID := true
-AUDIO_FEATURE_ENABLED_PROXY_DEVICE := true
-AUDIO_FEATURE_ENABLED_SSR := true
-AUDIO_FEATURE_ENABLED_SVA_MULTI_STAGE := true
-BOARD_SUPPORTS_OPENSOURCE_STHAL := true
-BOARD_SUPPORTS_SOUND_TRIGGER := true
-BOARD_USES_ALSA_AUDIO := true
+# Build Hacks
+BUILD_BROKEN_DUP_RULES := true
+BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true
 
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := $(PRODUCT_PLATFORM)
 
-# Board
-TARGET_BOARD_INFO_FILE := $(DEVICE_PATH)/board-info.txt
-
 # Bluetooth
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(DEVICE_PATH)/bluetooth/include
 
-# Properties
-TARGET_VENDOR_PROP += $(DEVICE_PATH)/configs/properties/vendor.prop
-TARGET_PRODUCT_PROP += $(DEVICE_PATH)/configs/properties/product.prop
-TARGET_SYSTEM_EXT_PROP += $(DEVICE_PATH)/configs/properties/system_ext.prop
-TARGET_ODM_PROP += $(DEVICE_PATH)/configs/properties/odm.prop
+# Components
+TARGET_COMMON_QTI_COMPONENTS := all
 
-# Filesystem
-TARGET_FS_CONFIG_GEN := $(DEVICE_PATH)/configs/config.fs
+# FWK
+TARGET_FWK_SUPPORTS_FULL_VALUEADDS := true
 
 # Fingerprint
 TARGET_SURFACEFLINGER_UDFPS_LIB := //hardware/oplus:libudfps_extension.oplus
 
 # HIDL
-DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE := \
-    $(DEVICE_PATH)/configs/device/device_framework_matrix.xml \
-    hardware/qcom-caf/common/vendor_framework_compatibility_matrix.xml \
-    vendor/lineage/config/device_framework_matrix.xml
-DEVICE_MATRIX_FILE := $(DEVICE_PATH)/configs/device/compatibility_matrix.xml
-DEVICE_MANIFEST_FILE := $(DEVICE_PATH)/configs/device/manifest_taro.xml
-ODM_MANIFEST_FILES := $(DEVICE_PATH)/configs/device/manifest_odm.xml
+DEVICE_MANIFEST_FILE := $(DEVICE_PATH)/hidl/manifest_taro.xml
 
 # Kernel
 BOARD_BOOT_HEADER_VERSION := 4
@@ -106,14 +85,12 @@ BOARD_BOOTCONFIG += \
 BOARD_KERNEL_PAGESIZE := 4096
 BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION)
 BOARD_KERNEL_IMAGE_NAME := Image
-BOARD_INCLUDE_DTB_IN_BOOTIMG := true
 BOARD_USES_GENERIC_KERNEL_IMAGE := true
 BOARD_EXCLUDE_KERNEL_FROM_RECOVERY_IMAGE := true
 BOARD_USES_FULL_RECOVERY_IMAGE := true
 BOARD_RAMDISK_USE_LZ4 := true
-TARGET_NO_KERNEL := false
-TARGET_NO_KERNEL_OVERRIDE := true
 TARGET_KERNEL_ARCH := $(TARGET_ARCH)
+TARGET_FORCE_PREBUILT_KERNEL := true
 TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilts/Image
 TARGET_PREBUILT_DTB := $(DEVICE_PATH)/prebuilts/dtb.img
 BOARD_MKBOOTIMG_ARGS += --dtb $(TARGET_PREBUILT_DTB)
@@ -135,7 +112,6 @@ BOARD_VENDOR_KERNEL_MODULES := $(KERNEL_MODULES)
 # Platform
 BOARD_USES_QCOM_HARDWARE := true
 TARGET_BOARD_PLATFORM := taro
-QCOM_BOARD_PLATFORMS += taro
 
 # Metadata
 BOARD_USES_METADATA_PARTITION := true
@@ -169,7 +145,11 @@ BOARD_SYSTEMIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_VENDOR_DLKMIMAGE_FILE_SYSTEM_TYPE := ext4
 
-# Copy Out
+# NFC
+TARGET_USES_NQ_NFC := true
+TARGET_NFC_SKU := taro
+
+# Taget Copy Out
 TARGET_COPY_OUT_ODM := odm
 TARGET_COPY_OUT_PRODUCT := product
 TARGET_COPY_OUT_SYSTEM_EXT := system_ext
@@ -179,6 +159,12 @@ TARGET_COPY_OUT_VENDOR_DLKM := vendor_dlkm
 # Power
 TARGET_TAP_TO_WAKE_NODE := "/proc/touchpanel/double_tap_enable"
 
+# Properties
+TARGET_VENDOR_PROP += $(DEVICE_PATH)/properties/vendor.prop
+TARGET_PRODUCT_PROP += $(DEVICE_PATH)/properties/product.prop
+TARGET_SYSTEM_EXT_PROP += $(DEVICE_PATH)/properties/system_ext.prop
+TARGET_ODM_PROP += $(DEVICE_PATH)/properties/odm.prop
+
 # Recovery
 TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/rootdir/etc/fstab.qcom
 TARGET_RECOVERY_UI_MARGIN_HEIGHT := 103
@@ -187,16 +173,12 @@ TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
 
 # RIL
-CUSTOM_APNS_FILE := $(DEVICE_PATH)/configs/device/apns-conf.xml
+CUSTOM_APNS_FILE := $(DEVICE_PATH)/hidl/apns-conf.xml
 ENABLE_VENDOR_RIL_SERVICE := true
 
 # Security Patch Level
 VENDOR_SECURITY_PATCH := 2022-10-05
 BOOT_SECURITY_PATCH := $(VENDOR_SECURITY_PATCH)
-
-# SEPolicy
-include device/qcom/sepolicy_vndr/SEPolicy.mk
-include hardware/oplus/sepolicy/qti/SEPolicy.mk
 
 # Touch
 SOONG_CONFIG_NAMESPACES += OPLUS_LINEAGE_TOUCH_HAL
@@ -254,5 +236,3 @@ WIFI_HIDL_FEATURE_DUAL_INTERFACE := true
 WIFI_HIDL_UNIFIED_SUPPLICANT_SERVICE_RC_ENTRY := true
 WPA_SUPPLICANT_VERSION := VER_0_8_X
 
-# Inherit the proprietary files
-include vendor/$(PRODUCT_BRAND)/$(PRODUCT_DEVICE)/BoardConfigVendor.mk
